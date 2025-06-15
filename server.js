@@ -15,7 +15,7 @@ const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
 app.get('/', function(req, res){
-res.sendFile(__dirname + './views/login.html');
+res.sendFile(__dirname + '/views/login.html');
 });
 
 
