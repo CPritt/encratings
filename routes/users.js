@@ -55,9 +55,25 @@ router.post('/', async (req, res) => {
     if (!newUser) {
         return res.status(400).json({ message: 'Error creating user' });
     }
-    res.redirect('/');
+    res.redirect('/login');
 });
 
+router.post('/login', async (req, res) => {
+    const {userName, password} = req.body;
+    try {
+        const user = await User.findOne({userName})
+    if (!user) {
+        return res.status(400).json({ message: 'User not found' });
+    }
+
+    if (user.password !== password) {
+        return res.status(400).json({ message: 'Invalid password' });
+    }
+
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+});
 
 
 module.exports = router;

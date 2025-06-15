@@ -16,8 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
+const loginRouter = require('./routes/login');
+app.use('/login', loginRouter);
 
-app.get('/', function(req, res){
+
+app.get('/login', function(req, res){
 res.sendFile(__dirname + '/views/login.html');
 });
 
