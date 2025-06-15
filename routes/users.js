@@ -18,21 +18,21 @@ router.get('/:id', (req, res) => {
     res.send('Get one User')
 })
 
-//creating a user
-router.post('/', async (req, res) => {
-    const user = new User({
-        userName: req.body.userName,
-        password: req.body.password,
-        email: req.body.email
-    })
+// creating a user
+// router.post('/', async (req, res) => {
+//     const user = new User({
+//         userName: req.body.userName,
+//         password: req.body.password,
+//         email: req.body.email
+//     })
 
-    try {
-        const newUser = await user.save()
-        res.status(201).json(newUser)
-    } catch (err) {
-        res.status(400).json({ message: err.message })
-    }
-})
+//     try {
+//         const newUser = await user.save()
+//         res.status(201).json(newUser)
+//     } catch (err) {
+//         res.status(400).json({ message: err.message })
+//     }
+// })
 
 //updating a user
 router.patch('/:id', (req, res) => {
@@ -45,7 +45,15 @@ router.delete('/:id', (req, res) => {
 })
 
 
-
+router.post('/', async (req, res) => {
+    const user = new User({
+        userName: req.body.userName,
+        password: req.body.password,
+        email: req.body.email
+    });
+    const newUser = await user.save()
+    res.status(201).json(newUser);
+});
 
 
 

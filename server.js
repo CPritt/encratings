@@ -11,12 +11,17 @@ db.once('open', () => console.log('Connected to Database'))
 
 app.use(express.json())
 
+app.use(express.urlencoded({ extended: true }));
+
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
+
 
 app.get('/', function(req, res){
 res.sendFile(__dirname + '/views/login.html');
 });
+
+
 
 
 app.listen(3000, () => console.log('Server is running on port 3000'))
