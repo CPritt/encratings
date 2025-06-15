@@ -51,8 +51,11 @@ router.post('/', async (req, res) => {
         password: req.body.password,
         email: req.body.email
     });
-    const newUser = await user.save()
-    res.status(201).json(newUser);
+    const newUser = await user.save();
+    if (!newUser) {
+        return res.status(400).json({ message: 'Error creating user' });
+    }
+    res.redirect('/');
 });
 
 
