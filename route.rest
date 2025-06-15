@@ -1,0 +1,28 @@
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "userName": "Ethan ZZZZZZ",
+    "password": "123456",
+    "email": "thisemail@gmail.com"
+}
+
+###
+GET http://localhost:3000/users/15
+
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "userName": "Chandler",
+    "password": "123456",
+    "email": "Cpritt37@gmail.com"
+}
+
