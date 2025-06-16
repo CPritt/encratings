@@ -13,6 +13,10 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.redirect("/login");
+});
+
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
 
@@ -25,6 +29,10 @@ app.get("/login", function (req, res) {
 
 app.get("/register", function (req, res) {
   res.sendFile(__dirname + "/views/register.html");
+});
+
+app.get("/home", function (req, res) {
+  res.sendFile(__dirname + "/views/home.html");
 });
 
 app.listen(3000, () => console.log("Server is running on port 3000"));
