@@ -1,0 +1,59 @@
+const mongoose = require("mongoose");
+
+const mediaSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+
+  description: {
+    type: String,
+    required: true,
+  },
+
+  type: {
+    type: String,
+    required: true,
+  },
+
+  genre: {
+    type: String,
+    required: true,
+  },
+  releaseDate: {
+    type: Date,
+    required: true,
+  },
+  avgRating: {
+    type: Number,
+    min: 0,
+    max: 10,
+  },
+
+  coverImage: {
+    type: String,
+  },
+  // OPTINOAL FIELDS
+
+  director: {
+    type: String,
+  },
+
+  author: {
+    type: String,
+  },
+
+  platform: {
+    type: String,
+  },
+
+  artist: {
+    type: String,
+  },
+
+  developer: {
+    type: String,
+  },
+});
+
+module.exports = mongoose.model("Media", mediaSchema);
