@@ -17,7 +17,17 @@ router.post("/", async (req, res) => {
          return res.status(400).json({ message: "Invalid password" });
       }
 
-      res.redirect("/home");
+      req.session.userId = user._id;
+      
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).json({ message: "Error saving session" });
+        }
+
+        console.log("User logged in:", user.userName);
+        res.redirect("/home");
+      });
    } catch (err) {
       console.error("Login error:", err);
       res.status(500).json({ message: "Server error during login" });

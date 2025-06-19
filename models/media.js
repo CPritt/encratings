@@ -51,6 +51,13 @@ const mediaSchema = new mongoose.Schema({
   developer: {
     type: String,
   },
+
+  ratings:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ratings",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Media", mediaSchema);

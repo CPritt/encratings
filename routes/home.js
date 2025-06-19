@@ -6,11 +6,7 @@ const Media = require("../models/media");
 const bcrypt = require("bcrypt");
 const { isAuthenticated } = require("../middleware/auth");
 
-router.get('/', isAuthenticated, async (req, res) => {
-    res.sendFile(__dirname + '/../views/home.html');
-});
 
-    
 router.post('/add', isAuthenticated, async (req, res) => {
     try{
         const userId = req.session.userId;
@@ -19,10 +15,19 @@ router.post('/add', isAuthenticated, async (req, res) => {
             title: req.body.title,
             type: req.body.type,
             description: req.body.description,
+            addedBy: userId,
         });
         await media.save();
 
-        media.ratings.push(rating_id);
+        const rating = new Ratings({
+            userId: userId,
+            mediaId: media._id,
+            rating: req.body.rating,
+            comment: req.body.comment,
+        });
+        await rating.save();
+
+        media.ratings.push(rating._id);
         await media.save();
 
         res.redirect('/home');
