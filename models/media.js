@@ -8,7 +8,6 @@ const mediaSchema = new mongoose.Schema({
 
   description: {
     type: String,
-    required: true,
   },
 
   type: {
@@ -18,11 +17,9 @@ const mediaSchema = new mongoose.Schema({
 
   genre: {
     type: String,
-    required: true,
   },
   releaseDate: {
     type: Date,
-    required: true,
   },
   avgRating: {
     type: Number,
