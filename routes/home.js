@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user");
 const Ratings = require("../models/ratings");
 const Media = require("../models/media");
-const bcrypt = require("bcrypt");
 const { isAuthenticated } = require("../middleware/auth");
 
 

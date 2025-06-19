@@ -19,12 +19,6 @@ router.get("/:id", (req, res) => {
 });
 
 
-//updating a user
-router.patch("/:id", (req, res) => {});
-
-//deleting a user
-router.delete("/:id", (req, res) => {});
-
 router.post("/", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
   const user = new User({
