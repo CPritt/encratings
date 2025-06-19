@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const session = require("express-session");
+const path = require('path');
 
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
@@ -22,7 +23,7 @@ app.use(session({
 }));
 
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
