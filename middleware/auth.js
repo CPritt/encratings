@@ -3,7 +3,7 @@ function isAuthenticated(req, res, next) {
     return next(); 
   }
 
-  console.log("not logged in");
+  console.log("not logged in", req.session);
   return res.redirect('/login'); 
 }
 

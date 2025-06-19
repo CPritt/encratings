@@ -4,6 +4,15 @@ const Ratings = require("../models/ratings");
 const Media = require("../models/media");
 const { isAuthenticated } = require("../middleware/auth");
 
+router.get('/media', isAuthenticated, async (req, res) => {
+    try{
+        const media = await Media.find();
+        res.json(media);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+    });
+
 
 router.post('/add', isAuthenticated, async (req, res) => {
     try{
@@ -23,8 +32,8 @@ router.post('/add', isAuthenticated, async (req, res) => {
             rating: req.body.rating,
             comment: req.body.comment,
         });
-        await rating.save();
 
+        await rating.save();
         media.ratings.push(rating._id);
         await media.save();
 

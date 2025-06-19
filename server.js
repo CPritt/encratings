@@ -19,7 +19,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false },
-  age: 1000 * 60 * 60 * 24 // 1 day
 }));
 
 app.use(express.json());
@@ -50,6 +49,10 @@ app.get("/register", function (req, res) {
 app.get("/home", function (req, res) {
   res.sendFile(__dirname + "/views/home.html");
 });
+
+app.get('/home/add', function (req, res) {
+  res.sendFile(__dirname + '/views/add_movie.html')
+})
 
 
 app.listen(3000, () => console.log("Server is running on port 3000"));
